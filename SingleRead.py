@@ -20,22 +20,8 @@ class SingleRead:
             list2.append(second)
         return list1, list2
 
-    def startEndPoint(self, firstList, secondList):
-        startPoint = list(set(firstList) - set(secondList))
-        endPoint = list(set(secondList) - set(firstList))
-        return startPoint[0], endPoint[0]
-
-    def findingPath(self, firstList, secondList, starPoint, endPoint):
-        path = list()
-        path.append(starPoint)
-        while starPoint != endPoint:
-            for i in range(len(firstList)):
-                if starPoint == firstList[i]:
-                    path.append(secondList[i])
-                    starPoint = secondList[i]
-        return path
-
-    def constructGenome(self, path):
+    @staticmethod
+    def constructGenome(path):
         finalGenome = list()
         for i in range(len(path)):
             if i == 0:
