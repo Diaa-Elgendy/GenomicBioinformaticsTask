@@ -36,17 +36,17 @@ if __name__ == '__main__':
     print('1) Single Read \n2) Paired Read \nYour Choice: ')
     choice = int(input())
     if choice == 1:
-        singleReadFileName = 'SingleReadInput.txt'
+        singleReadFileName = 'test_cases/p2/SingleReadsInput.txt'
         singleRead = SingleRead(singleReadFileName)
         list1, list2 = singleRead.createKmers()
         startPoint, endPoint = startEndPoint(list1, list2)
         path = findingPath(list1, list2, startPoint, endPoint)
         finalGenome = singleRead.constructGenome(path)
-        readOutput = open('SingleReadOutput.txt').readline().strip()
+        readOutput = open('test_cases/SingleReadsOutput.txt').readline().strip()
         showResults(list1, list2, startPoint, endPoint, path, '', '', finalGenome, readOutput)
 
     elif choice == 2:
-        pairedReadFileName = 'ReadPairsInput.txt'
+        pairedReadFileName = 'test_cases/p2/ReadPairsInput.txt'
         pairedRead = PairedRead(pairedReadFileName)
         list1, list2, kSize, gapSize = pairedRead.createPairedKmers()
         startPoint, endPoint = startEndPoint(list1, list2)
@@ -54,5 +54,5 @@ if __name__ == '__main__':
         prefixList, suffixList = pairedRead.prefixSuffix(path, kSize)
         prefix, suffix = pairedRead.reconstructGenome(prefixList, suffixList)
         finalGenome = pairedRead.finalGenome(prefix, suffix, kSize, gapSize)
-        readOutput = open('ReadPairsOutput.txt').readline().strip()
+        readOutput = open('test_cases/ReadPairsOutput.txt').readline().strip()
         showResults(list1, list2, startPoint, endPoint, path, prefix, suffix, finalGenome, readOutput)
